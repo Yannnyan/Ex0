@@ -40,16 +40,16 @@ public class ShabatElevAlgo implements ElevatorAlgo {
     public void cmdElevator(int elev) {
         Elevator curr = this.getBuilding().getElevetor(elev);
         if(curr.getState() == Elevator.LEVEL) {
-            int dir = this.getDirection();
-            int pos = curr.getPos();
-            boolean up2down = false;
-            if(dir == UP) {
-                if(pos<curr.getMaxFloor()) {
-                    curr.goTo(pos+1);
+            int dir = this.getDirection();  // get direction
+            int pos = curr.getPos();    // get position
+            boolean up2down = false;    // changing direction from up to down
+            if(dir == UP) { // if elevator goes up
+                if(pos<curr.getMaxFloor()) {    // checks if elevator is not pass the maximum
+                    curr.goTo(pos+1);   // go to floor+1
                 }
-                else {
+                else {// if elevator reached maximum then change direction
                     _direction = DOWN;
-                    curr.goTo(pos-1);
+                    curr.goTo(pos-1);   // go to floor-1
                     up2down = true;
                 }
             }
@@ -57,7 +57,7 @@ public class ShabatElevAlgo implements ElevatorAlgo {
                 if(pos>curr.getMinFloor()) {
                     curr.goTo(pos-1);
                 }
-                else {
+                else {// if elevator reached minimum level change direction to up
                     _direction = UP;
                     curr.goTo(pos+1);
                 }
