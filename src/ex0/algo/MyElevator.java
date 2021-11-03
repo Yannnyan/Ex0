@@ -15,7 +15,7 @@ public class MyElevator {
         return this.calls;
     }
 
-    public Call CurrentCall(int elev){ // this returns the first call the elevator needs to handle
+    public Call CurrentCall(){ // this returns the first call the elevator needs to handle
         Call currentCall = this.calls.getFirstCall();
         return currentCall;
     }
@@ -36,6 +36,28 @@ public class MyElevator {
                         actualTravel +
                         elevator.getStopTime() + elevator.getTimeForClose();
         return totalTime;
+    }
+    public void Goto(int floor){
+        this.elevator.goTo(floor);
+    }
+    public void Stop(int floor){
+        this.elevator.stop(floor);
+    }
+    // updates the current call of the elevator and returns its flag
+    public int UpdateAndGetFlag(){
+        Call currentCall = CurrentCall();
+        if(currentCall.getFlag() == 0){
+            if(currentCall.getSrc() == this.elevator.getPos()){
+                currentCall.ReachedSource();
+            }
+        }
+        else if(currentCall.getFlag() == 1){
+            if(currentCall.getDest() == this.elevator.getPos()){
+                currentCall.ReachedDest();
+            }
+        }
+
+        return currentCall.getFlag();
     }
 
 

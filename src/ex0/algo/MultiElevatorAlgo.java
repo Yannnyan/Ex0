@@ -31,7 +31,21 @@ public class MultiElevatorAlgo implements ElevatorAlgo{
     @Override
     // takes all the calls up and then takes all the calls down
     public void cmdElevator(int elev) {
-
+        MyElevator myElevator = myBuilding.getElev(elev);
+        Call call = myElevator.CurrentCall();
+        int flag=0;
+        if(call != null)
+             flag = myElevator.UpdateAndGetFlag();
+        else{
+            return;
+        }
+        // go to the current call source or destination.
+        if(flag == 0){
+            myElevator.Goto(call.getSrc());
+        }
+        else if(flag == 1){
+            myElevator.Goto(call.getDest());
+        }
 
     }
 }

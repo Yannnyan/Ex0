@@ -38,4 +38,12 @@ public class Call {
             return false;
         }
     }
+    // this method changed the current call flag to 1
+    public void ReachedSource(){
+        this.call[0] = 1;
+    }
+    //this method changes the current call flag to 2
+    public void ReachedDest(){
+        this.call[0] = 2;
+    }
 }

@@ -14,15 +14,18 @@ public class Calls {
 
     public Calls(){
         calls = new ArrayList<Call>();
-        Call call0 = new Call(0,0,0);
+        Call call0 = new Call(2,0,0);
         calls.add(call0);
+
     }
+
     public Call getByIndex(int index){
         if(index <0) return null;
 
         return calls.get(index);
     }
-    public Call getFirstCall(){ // returns the first call which has flag of 0 or 1
+    // returns the first call which has flag of 0 or 1
+    public Call getFirstCall(){
         for(int i=0; i< calls.size(); i++){
             Call call = calls.get(i);
             if(call.getFlag() == 0 || call.getFlag() == 1){
@@ -35,9 +38,10 @@ public class Calls {
         return null;
     }
     public int getSize(){
-        Iterator<Call> iterator = calls.iterator();
-        int size =0;
-        while(iterator.hasNext()){
+        int size=0;
+        while(this.calls.size() > size){
+            if(this.calls.get(size) == null)
+                break;
             size+=1;
         }
         return size;
@@ -47,7 +51,9 @@ public class Calls {
         this.calls.add(call);
     }
    public void remove(int index){
-        calls.remove(index);
+        if(getByIndex(index).CheckFlag()) {
+            calls.remove(index);
+        }
    }
 
     // this method returns Source elevator hasn't reached its source or Destination if it has reached its source
@@ -62,5 +68,4 @@ public class Calls {
         }
 
     }
-
 }
