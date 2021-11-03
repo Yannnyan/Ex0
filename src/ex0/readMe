@@ -1,0 +1,8 @@
+This is a homework excersice number 0 for OOP class.
+The purpose of the project is to implement an ON-LINE elevator allocation algorithm primarily focusing on object oriented programming.
+There are few aspects of good algorithm such as average waiting time for call, number of unhandled calls. A good algorithm seeks to minimize these aspects.
+This project advances to accomplish the goal of being a good algorithm while the code should be asthetic and simple to understand.
+Also Our project attemps to make the whole problem more abstract by dividing the responsibilities between classes.
+When trying to implement our originally written algorithm we found out that it is not clear rather hard to understand and time consuming.
+Therefore we've written a simple algorithm to make implementation easier. We've learned from this that under time pressure its better to look for simpler solutions and to trade
+off few seconds of average waiting time per call for more time to complete the whole task.
