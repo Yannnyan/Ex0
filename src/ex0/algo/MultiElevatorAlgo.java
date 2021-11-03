@@ -33,19 +33,19 @@ public class MultiElevatorAlgo implements ElevatorAlgo{
     public void cmdElevator(int elev) {
         MyElevator myElevator = myBuilding.getElev(elev);
         Call call = myElevator.CurrentCall();
-        int flag=0;
-        if(call != null)
-             flag = myElevator.UpdateAndGetFlag();
-        else{
+        if(call == null){
             return;
         }
+        else{
+            myElevator.UpdateAndGetFlag();
+        }
         // go to the current call source or destination.
-        if(flag == 0){
+        if(call.getFlag() == 0){
             myElevator.Goto(call.getSrc());
         }
-        else if(flag == 1){
+        else if(call.getFlag() == 1){
             myElevator.Goto(call.getDest());
         }
-
+        myElevator.MiddleStop();
     }
 }

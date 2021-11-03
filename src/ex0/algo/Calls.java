@@ -20,7 +20,7 @@ public class Calls {
     }
 
     public Call getByIndex(int index){
-        if(index <0) return null;
+        if(index < 0 || index > calls.size()) return null;
 
         return calls.get(index);
     }
@@ -55,7 +55,25 @@ public class Calls {
             calls.remove(index);
         }
    }
-
+   // hasNext is implemented by getSize, since Size counts how many there are and by index we can assume we have more
+    public Call NextCall(Call current){
+    int indexCurrent = calls.indexOf(current);
+    int callSize = getSize();
+    if(indexCurrent+1 <getSize() || indexCurrent < calls.size()){
+        return null;
+    }
+    Call nextCall = calls.get(indexCurrent+1);
+    while(indexCurrent +1 < getSize()){
+        if(nextCall.getFlag() == 2){
+            indexCurrent+=1;
+            nextCall = calls.get(indexCurrent);
+        }
+        else{
+            break;
+        }
+    }
+    return nextCall;
+    }
     // this method returns Source elevator hasn't reached its source or Destination if it has reached its source
     // warning, need to check flag is not 2 since then the call should be deleted!
     public int getFloor(int index){
@@ -67,5 +85,12 @@ public class Calls {
             return call.getDest();
         }
 
+    }
+    public int IndexOf(Call call){
+        return calls.indexOf(call);
+    }
+    // adds a specific call in index
+    public void add(int index, Call call){
+        calls.add(index,call);
     }
 }

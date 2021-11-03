@@ -23,8 +23,14 @@ public class MyBuilding{
     public int getNumberOfElevators(){
         return this.myBuilding.numberOfElevetors();
     }
+
+
     public int allocate(Call call){
        int minElev = MinimalTime();
+       boolean isBugged = myBuilding.getElevetor(minElev).getState() == Elevator.ERROR;
+       if(isBugged){
+           return myBuilding.numberOfElevetors()-minElev;
+       }
        myElevators[minElev].getCalls().add(call);
        return minElev;
     }

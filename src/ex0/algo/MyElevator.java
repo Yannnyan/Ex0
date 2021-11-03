@@ -59,6 +59,45 @@ public class MyElevator {
 
         return currentCall.getFlag();
     }
+    // this method check if there is a call 'next' which is located in the middle of elevator and current destination
+    // then stops there.
+    public void MiddleStop(){
+        //////// creating variables
+        Call current = CurrentCall();
+        if(current == null) return;
+        Call next = calls.NextCall(current);
+        if(next == null) return;
+        int elevPos = elevator.getPos(),currentFloor=0,nextFloor=0;
+        /////////// //////
+        ////// initializing variables ///////
+        if(current.getFlag() ==0)currentFloor=current.getSrc();
+        else if(current.getFlag() ==1) currentFloor=current.getDest();
+        if(next.getFlag() == 0) nextFloor = next.getSrc();
+        else if(next.getFlag() == 1) nextFloor = next.getDest();
+        ////////////// ///////
 
+        while(next != null){
+            if(elevator.getState() == Elevator.DOWN){
+                if(elevPos>nextFloor && nextFloor < currentFloor) {
+                    elevator.stop(nextFloor);
+                    swap(next); // now the elevator is handling call 'next'
+                }
+            }
+            else if(elevator.getState() == Elevator.UP){
+                if(elevPos < nextFloor && nextFloor < currentFloor){
+                    elevator.stop(nextFloor);
+                    swap(next);
+                }
+            }
+        }
+    }
+    // swaps the next call with current
+    private void swap(Call next){
+        Call temp = CurrentCall();
+        int indexOfCurrent = calls.IndexOf(CurrentCall());
+        int indexOfNext = calls.IndexOf(next);
+        this.getCalls().add(indexOfCurrent, next);
+        this.getCalls().add(indexOfNext,temp);
 
+    }
 }
