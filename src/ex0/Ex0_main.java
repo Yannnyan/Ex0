@@ -8,11 +8,11 @@ import ex0.simulator.Simulator_A;
  * starting to implement the algorithm.
  */
 public class Ex0_main {
-    public static Long ID0=323906842L, ID1 = null, ID2 = null;
+    public static Long ID0=323906842L, ID1 = 208232652L, ID2 = null;
     public static void main(String[] ar) {
         String codeOwner = codeOwner();
         Simulator_A.setCodeOwner(codeOwner);
-        int stage = 4;  // any case in [0,9].
+        int stage = 9;  // any case in [0,9].
         System.out.println("Ex0 Simulator: isStarting, stage="+stage+") ... =  ");
         String callFile = null; // use the predefined cases [0-9].
          //String callFile = "data/Ex0_stage_0__.csv"; //
@@ -34,9 +34,9 @@ public class Ex0_main {
     }
 
     private static String codeOwner() {
-        String owners = "Yan Naigebaver";
-        if(ID0!=null) {owners = ""+ID0;}
-        if(ID1!=null) {owners += ","+ID1;}
+        String owners = "Yan Naigebaver, Ron Shvindelman";
+        if(ID0!=null) {owners = "Yan Naigebaver "+ID0;}
+        if(ID1!=null) {owners += ",Ron Shvindelman "+ID1;}
         if(ID2!=null) {owners += ","+ID2;}
         return owners;
     }

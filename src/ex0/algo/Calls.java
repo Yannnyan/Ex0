@@ -74,18 +74,6 @@ public class Calls {
     }
     return nextCall;
     }
-    // this method returns Source elevator hasn't reached its source or Destination if it has reached its source
-    // warning, need to check flag is not 2 since then the call should be deleted!
-    public int getFloor(int index){
-        Call call = calls.get(index);
-        if(call.getFlag() == 0){
-            return call.getSrc();
-        }
-        else {
-            return call.getDest();
-        }
-
-    }
     public int IndexOf(Call call){
         return calls.indexOf(call);
     }

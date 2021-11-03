@@ -27,10 +27,6 @@ public class MyBuilding{
 
     public int allocate(Call call){
        int minElev = MinimalTime();
-       boolean isBugged = myBuilding.getElevetor(minElev).getState() == Elevator.ERROR;
-       if(isBugged){
-           return myBuilding.numberOfElevetors()-minElev;
-       }
        myElevators[minElev].getCalls().add(call);
        return minElev;
     }
@@ -75,6 +71,7 @@ public class MyBuilding{
         }
         return ans;
     }
+    // time takes the elevator to reach and handle the last call
     private double TimeToHandle(MyElevator myElevator, Call call){
         return myElevator.dt(call.getSrc()) + myElevator.dt(call.getSrc(),call.getDest());
     }
